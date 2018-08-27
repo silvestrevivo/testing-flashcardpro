@@ -7,8 +7,8 @@ class StackList extends Component {
     return (
       <div>
         {stacks.map((stack, i) => (
-          <Link to="/stack">
-            <h4 key={i}>{stack.title}</h4>
+          <Link to="/stack" key={i}>
+            <h4>{stack.title}</h4>
           </Link>
         ))}
       </div>
