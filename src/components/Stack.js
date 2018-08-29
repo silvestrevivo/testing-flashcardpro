@@ -15,7 +15,9 @@ class Stack extends Component {
     } = this.props;
     return (
       <div>
-        <Link to="/">Home</Link>
+        <Link to="/" className="link-home">
+          <h4>Home</h4>
+        </Link>
         <h3>{title}</h3>
         {cards.map(card => (
           <Card key={card.id} card={card} />
