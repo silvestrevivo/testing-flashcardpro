@@ -29,7 +29,7 @@ class Stack extends Component {
 
 function mapStateToProps(state) {
   return {
-    stack: state,
+    stack: state.stack,
   };
 }
 

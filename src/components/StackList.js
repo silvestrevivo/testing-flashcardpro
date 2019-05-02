@@ -2,17 +2,23 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import stacks from '../data/stacks.json';
+import stacksFromJSON from '../data/stacks.json';
 import * as actions from '../actions';
 
 class StackList extends Component {
   static propTypes = {
     setStack: PropTypes.func.isRequired,
+    loadStacks: PropTypes.func.isRequired,
+    stacks: PropTypes.array.isRequired,
   };
 
+  componentDidMount() {
+    const { loadStacks } = this.props;
+    if (loadStacks.length === 0) loadStacks(stacksFromJSON);
+  }
+
   render() {
-    console.log(this.props);
-    const { setStack } = this.props;
+    const { setStack, stacks } = this.props;
     return (
       <div>
         {stacks.map(stack => (
@@ -25,7 +31,13 @@ class StackList extends Component {
   }
 }
 
+function mapStateToProps(state) {
+  return {
+    stacks: state.stacks,
+  };
+}
+
 export default connect(
-  null,
+  mapStateToProps,
   actions
 )(StackList);
